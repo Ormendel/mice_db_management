@@ -21,7 +21,7 @@ jobs:
         run: pip install python-dotenv
 
       - name: Run Python script
-        run: python script.py
+        run: python get_vars_workflow.py
         env:
           HOST: ${{ vars.HOST }}
           DATABASE: ${{ vars.DATABASE }}
