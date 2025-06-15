@@ -1,0 +1,30 @@
+name: Run Python with GitHub Environment Vars
+
+on:
+  workflow_dispatch:  # allows manual run
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    environment: dev  # 👈 name of your environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dotenv (if you use it)
+        run: pip install python-dotenv
+
+      - name: Run Python script
+        run: python script.py
+        env:
+          HOST: ${{ vars.HOST }}
+          DATABASE: ${{ vars.DATABASE }}
+          USER: ${{ vars.USER }}
+          PASSWORD: ${{ vars.PASSWORD }}
+          PORT: ${{ vars.PORT }}
