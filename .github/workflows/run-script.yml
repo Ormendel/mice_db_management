@@ -28,3 +28,4 @@ jobs:
           USER: ${{ vars.USER }}
           PASSWORD: ${{ vars.PASSWORD }}
           PORT: ${{ vars.PORT }}
+          DB: ${{ vars.DB }}
