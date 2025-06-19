@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from app.schemas import UserIn, UserOut
 from app.storage import add_user, get_all_users, get_user_by_id, delete_user_by_id
 from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi import status
 
 app = FastAPI(
     title="miceAPI",
@@ -15,7 +16,7 @@ async def custom_swagger_ui():
         title="miceAPI - Swagger UI"
     )
 
-@app.post("/users/", response_model=UserOut, tags=["requests"])
+@app.post("/users/", response_model=UserOut, status_code=status.HTTP_201_CREATED, tags=["requests"])
 async def create_user(user: UserIn):
     new_user = await add_user(user.dict())
     return new_user
